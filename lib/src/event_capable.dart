@@ -15,18 +15,34 @@ abstract class EventCapable {
 
   void on(String type, Function handler) {
     EventListener listener = (Event event) {
-      // parameters
-      List<dynamic> params = [];
-      ClosureMirror mirror = reflect(handler);
-      int numParams = mirror.function.parameters.length;
-      if (numParams > 0) {
-        params.add(event);
-      }
-      if (numParams > 1 && event is CustomEvent) {
-        params.add(event.detail);
+      List<dynamic> params1 = [event];
+      if (event is CustomEvent) {
+        params1.add(event.detail);
       }
 
-      Function.apply(handler, params);
+      // parameters
+      List<dynamic> params2 = [];
+      ClosureMirror mirror = reflect(handler);
+      List<ParameterMirror> handlerParams = mirror.function.parameters;
+      int numParams = handlerParams.length;
+      for (int i = 0; i < numParams; i++) {
+        if (!(i < params1.length)) {
+          throw new RangeError('The listener has to many parameters');
+        }
+
+        // checks the paramter type
+        ParameterMirror handlerParam = handlerParams[i];
+        TypeMirror paramType = reflectType(params1[i].runtimeType);
+        if (params1[i] != null && !paramType.isSubtypeOf(handlerParam.type)) {
+          throw new ArgumentError(
+              '${paramType.reflectedType} is not a subtype of ' +
+                  '${handlerParam.type.reflectedType}');
+        }
+
+        params2.add(params1[i]);
+      }
+
+      Function.apply(handler, params2);
     };
     _eventListeners.add(new _EventListener(type, handler, listener));
     nativeElement.addEventListener(type, listener);
