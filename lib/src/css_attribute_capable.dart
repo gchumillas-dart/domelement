@@ -3,13 +3,6 @@ part of domelement;
 abstract class CssAttributeCapable {
   Map<String, String> get css => new _CssAttributeMap(nativeElement);
 
-  set css(Map<String, String> value) {
-    css.clear();
-    value.forEach((String key, String value) {
-      css[key] = value;
-    });
-  }
-
   Element get nativeElement;
 }
 
