@@ -44,22 +44,6 @@ class DomElement extends Object
       ? new DomElement.fromElement(_nativeElement.parent)
       : null;
 
-  /// The only purpose of the function is to facilitate the creation of new
-  /// elements. For instance:
-  ///
-  ///     $('<span />')
-  ///       ..attr['id'] = 'span_1'
-  ///       ..css['color'] = 'red'
-  ///       ..apply((target) {
-  ///         // appends some internal structures
-  ///         target.appendHtml('some contents here');
-  ///         target.prependElement($('<p>Some text</p>'));
-  ///       });
-  ///
-  void apply(void callback(DomElement element)) {
-    callback(this);
-  }
-
   DomElement find(String selectors) {
     Element element = _nativeElement.querySelector(selectors);
     return element != null ? new DomElement.fromElement(element) : null;
