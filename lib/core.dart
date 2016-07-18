@@ -20,8 +20,13 @@ part 'src/null_tree_sanitizer.dart';
 /// This function allow to create instances from different sources.
 /// For example:
 ///
-///     // creates an instance from a HTML string
-///     $('<span>Some text..</span>');
+///     // The following command is equivalent to ...
+///     $('<span title="Span title">Some text..</span>');
+///
+///     // the following command
+///     DomElement elem = new DomElement('span')
+///       ..attr['title'] = 'Some title'
+///       ..text = 'Some text';
 DomElement $(dynamic /* String|Element|DomElement */ source) {
   DomElement node;
   if (source is String) {
