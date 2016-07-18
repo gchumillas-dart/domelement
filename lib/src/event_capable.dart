@@ -1,7 +1,6 @@
 part of domelement;
 
 // TODO: implement one() method
-// TODO: return false; stops the bubble event cycle
 abstract class EventCapable {
   Element get nativeElement;
 
@@ -57,7 +56,13 @@ abstract class EventCapable {
         params2.add(params1[i]);
       }
 
-      Function.apply(handler, params2);
+      // if the handler returns 'false' stops the event from bubbling up the
+      // event chain and prevents the default action
+      dynamic result = Function.apply(handler, params2);
+      if (result is bool && !result) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
     };
   }
 }
