@@ -11,7 +11,7 @@ void main() {
     ..trigger('click', data: 'Hello there!');
 
   // Processes the 'click' event only once
-  listener(Event event) {
+  void listener(Event event) {
     DomElement target = $(event.target);
     print('Anchor 3: click!');
     // deattaches the listener from the target
