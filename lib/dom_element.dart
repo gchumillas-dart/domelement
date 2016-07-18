@@ -10,6 +10,10 @@ class DomElement extends Object
         MetricsCapable {
   Element _nativeElement;
 
+  DomElement(String tagName) {
+    _nativeElement = document.createElement(tagName);
+  }
+
   DomElement.fromElement(this._nativeElement);
 
   DomElement.fromString(String html) {
