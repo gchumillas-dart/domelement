@@ -11,12 +11,11 @@ void main() {
     ..trigger('click', data: 'Hello there!');
 
   // Processes the 'click' event only once
-  Function listener;
-  listener = (Event event) {
+  listener(Event event) {
     DomElement target = $(event.target);
     print('Anchor 3: click!');
     // deattaches the listener from the target
     target.off('click', listener);
-  };
+  }
   find('#anchor3')..on('click', listener);
 }
