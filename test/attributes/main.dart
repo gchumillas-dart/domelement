@@ -17,7 +17,7 @@ void main() {
   print('border: ' + pre.css['border'] + ', padding: ' + pre.css['padding']);
   print('Hidden text: ' + pre.data['hidden-text']);
 
-  // see 'events' folder
+  // see 'event' examples
   find('#button1').on('click', () {
     // removes all attributes except 'data' and 'style'
     pre.attr..remove('contenteditable')..remove('spellcheck');
