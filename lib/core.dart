@@ -6,6 +6,7 @@ import 'dart:html';
 import 'dart:mirrors' hide Comment;
 
 import 'package:html_unescape/html_unescape.dart';
+import 'package:quiver/core.dart';
 
 part 'dom_element.dart';
 part 'src/attribute_capable.dart';
@@ -16,6 +17,7 @@ part 'src/event_capable.dart';
 part 'src/metrics_capable.dart';
 part 'src/null_tree_sanitizer.dart';
 
+// TODO: type overloading $(Element|DomElement)
 DomElement $(String html) => new DomElement.fromString(html);
 
 DomElement find(String selectors) {
