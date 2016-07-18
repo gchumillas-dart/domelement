@@ -1,24 +1,39 @@
 part of domelement;
 
+// TODO: implement one() method
+// TODO: return false; stops the bubble event cycle
 abstract class EventCapable {
   Element get nativeElement;
 
-  List<_EventListener> _eventListeners = [];
+  static Map<_EventHandler, EventListener> _eventHandlers =
+      new HashMap<_EventHandler, EventListener>(
+          equals: (_EventHandler key1, _EventHandler key2) =>
+              key1.element == key2.element &&
+              key1.type == key2.type &&
+              key1.handler == key2.handler);
 
   void off(String type, Function handler) {
-    _eventListeners.where((_EventListener eventListener) {
-      if (eventListener.type == type && eventListener.handler == handler) {
-        nativeElement.removeEventListener(type, eventListener.listener);
-      }
-    });
+    nativeElement.removeEventListener(type,
+        _eventHandlers.remove(new _EventHandler(nativeElement, type, handler)));
   }
 
   void on(String type, Function handler) {
-    EventListener listener = (Event event) {
-      List<dynamic> params1 = [event];
-      if (event is CustomEvent) {
-        params1.add(event.detail);
-      }
+    EventListener listener = _eventHandlers.putIfAbsent(
+        new _EventHandler(nativeElement, type, handler),
+        () => _createEventListener(type, handler));
+    nativeElement.addEventListener(type, listener);
+  }
+
+  void trigger(String type, {dynamic data}) {
+    nativeElement.dispatchEvent(new CustomEvent(type, detail: data));
+  }
+
+  EventListener _createEventListener(String type, Function handler) {
+    return (Event event) {
+      List<dynamic> params1 = [
+        event,
+        event is CustomEvent ? event.detail : null
+      ];
 
       // parameters
       List<dynamic> params2 = [];
@@ -26,7 +41,7 @@ abstract class EventCapable {
       List<ParameterMirror> handlerParams = mirror.function.parameters;
       int numParams = handlerParams.length;
       for (int i = 0; i < numParams; i++) {
-        if (!(i < params1.length)) {
+        if (i >= params1.length) {
           throw new RangeError('The listener has to many parameters');
         }
 
@@ -44,18 +59,15 @@ abstract class EventCapable {
 
       Function.apply(handler, params2);
     };
-    _eventListeners.add(new _EventListener(type, handler, listener));
-    nativeElement.addEventListener(type, listener);
-  }
-
-  void trigger(String type, {dynamic data}) {
-    nativeElement.dispatchEvent(new CustomEvent(type, detail: data));
   }
 }
 
-class _EventListener {
+class _EventHandler {
+  final Element element;
   final String type;
   final Function handler;
-  final EventListener listener;
-  _EventListener(this.type, this.handler, this.listener);
+  _EventHandler(this.element, this.type, this.handler);
+
+  @override
+  int get hashCode => hash3(element, type, handler);
 }
