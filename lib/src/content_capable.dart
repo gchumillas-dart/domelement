@@ -53,7 +53,8 @@ abstract class ContentCapable {
     } else if (source is _Callback) {
       prepend(source(this));
     } else if (source != null) {
-      throw new ArgumentError('Valid values are: String|Element|DomElement');
+      throw new ArgumentError('Valid values are: ' +
+          'String|Element|DomElement|(DomElement) => dynamic');
     }
   }
 }
