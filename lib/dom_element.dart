@@ -10,8 +10,6 @@ class DomElement extends Object
         MetricsCapable {
   Element _nativeElement;
 
-  DomElement(this._nativeElement);
-
   DomElement.fromElement(this._nativeElement);
 
   DomElement.fromString(String html) {
@@ -39,7 +37,7 @@ class DomElement extends Object
   Element get nativeElement => _nativeElement;
 
   DomElement get parent => _nativeElement.parent != null
-      ? new DomElement(_nativeElement.parent)
+      ? new DomElement.fromElement(_nativeElement.parent)
       : null;
 
   /// The only purpose of the function is to facilitate the creation of new

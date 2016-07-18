@@ -22,7 +22,7 @@ DomElement $(dynamic source) {
   if (source is String) {
     node = new DomElement.fromString(source);
   } else if (source is Element) {
-    node = new DomElement(source);
+    node = new DomElement.fromElement(source);
   } else if (source is DomElement) {
     // redundant but useful
     node = source;
@@ -32,8 +32,8 @@ DomElement $(dynamic source) {
 
 DomElement find(String selectors) {
   Element element = querySelector(selectors);
-  return element != null ? new DomElement(element) : null;
+  return element != null ? new DomElement.fromElement(element) : null;
 }
 
 List<DomElement> findAll(String selectors) => querySelectorAll(selectors)
-    .map((Element element) => new DomElement(element));
+    .map((Element element) => new DomElement.fromElement(element));

@@ -13,7 +13,7 @@ void main() {
   // Processes the 'click' event only once
   Function listener;
   listener = (Event event) {
-    DomElement target = new DomElement(event.target);
+    DomElement target = $(event.target);
     print('Anchor 3: click!');
     // deattaches the listener from the target
     target.off('click', listener);
