@@ -12,6 +12,8 @@ class DomElement extends Object
 
   DomElement(this._nativeElement);
 
+  DomElement.fromElement(this._nativeElement);
+
   DomElement.fromString(String html) {
     // removes the self-closing tags
     html = html.replaceAllMapped(

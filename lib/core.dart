@@ -17,8 +17,18 @@ part 'src/event_capable.dart';
 part 'src/metrics_capable.dart';
 part 'src/null_tree_sanitizer.dart';
 
-// TODO: type overloading $(Element|DomElement)
-DomElement $(String html) => new DomElement.fromString(html);
+DomElement $(dynamic source) {
+  DomElement node;
+  if (source is String) {
+    node = new DomElement.fromString(source);
+  } else if (source is Element) {
+    node = new DomElement(source);
+  } else if (source is DomElement) {
+    // redundant but useful
+    node = source;
+  }
+  return node;
+}
 
 DomElement find(String selectors) {
   Element element = querySelector(selectors);
