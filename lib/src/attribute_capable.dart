@@ -39,6 +39,7 @@ class _AttrMap extends MapBase<String, String> {
   String remove(Object key) => _target.attributes.remove(key.toString());
 }
 
+// TODO: should extends MapBase<String, Object>
 class _DataMap extends _AttrMap {
   _DataMap(Element target) : super(target);
 
