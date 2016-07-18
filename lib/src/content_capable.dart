@@ -1,5 +1,7 @@
 part of domelement;
 
+typedef dynamic _Callback(DomElement target);
+
 abstract class ContentCapable {
   String get html => nativeElement.innerHtml;
 
@@ -14,7 +16,8 @@ abstract class ContentCapable {
     nativeElement.text = new HtmlEscape().convert(value);
   }
 
-  void append(dynamic /* String|Element|DomElement */ source) {
+  void append(
+      dynamic /* String|Element|DomElement|(DomElement) => dynamic */ source) {
     if (source is String) {
       nativeElement.insertAdjacentHtml('beforeend', source,
           treeSanitizer: new NullTreeSanitizer());
@@ -22,8 +25,11 @@ abstract class ContentCapable {
       DomElement element =
           source is Element ? new DomElement.fromElement(source) : source;
       nativeElement.append(element.nativeElement);
-    } else {
-      throw new ArgumentError('Valid values are: String|Element|DomElement');
+    } else if (source is _Callback) {
+      append(source(this));
+    } else if (source != null) {
+      throw new ArgumentError('Valid values are: ' +
+          'String|Element|DomElement|(DomElement) => dynamic');
     }
   }
 
@@ -33,7 +39,8 @@ abstract class ContentCapable {
     }
   }
 
-  void prepend(dynamic /* String|Element|DomElement */ source) {
+  void prepend(
+      dynamic /* String|Element|DomElement|(DomElement) => dynamic */ source) {
     if (source is String) {
       nativeElement.insertAdjacentHtml('afterbegin', source,
           treeSanitizer: new NullTreeSanitizer());
@@ -43,7 +50,9 @@ abstract class ContentCapable {
       List<Node> childNodes = nativeElement.childNodes;
       Node firstChild = childNodes.length > 0 ? childNodes.first : null;
       nativeElement.insertBefore(element.nativeElement, firstChild);
-    } else {
+    } else if (source is _Callback) {
+      prepend(source(this));
+    } else if (source != null) {
       throw new ArgumentError('Valid values are: String|Element|DomElement');
     }
   }
