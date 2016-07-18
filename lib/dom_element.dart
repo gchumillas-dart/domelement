@@ -56,6 +56,11 @@ class DomElement extends Object
     callback(this);
   }
 
+  DomElement find(String selectors) {
+    Element element = _nativeElement.querySelector(selectors);
+    return element != null ? new DomElement.fromElement(element) : null;
+  }
+
   List<DomElement> findAll(String selectors) => _nativeElement
       .querySelectorAll(selectors)
       .map((Element element) => new DomElement.fromElement(element));
