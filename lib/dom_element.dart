@@ -5,7 +5,7 @@ class DomElement extends Object
         AttributeCapable,
         ClassCapable,
         ContentCapable,
-        CssCapable,
+        CssAttributeCapable,
         EventCapable,
         MetricsCapable {
   Element _nativeElement;

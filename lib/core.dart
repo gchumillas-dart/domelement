@@ -12,7 +12,7 @@ part 'dom_element.dart';
 part 'src/attribute_capable.dart';
 part 'src/class_capable.dart';
 part 'src/content_capable.dart';
-part 'src/css_capable.dart';
+part 'src/css_attribute_capable.dart';
 part 'src/event_capable.dart';
 part 'src/metrics_capable.dart';
 part 'src/null_tree_sanitizer.dart';

@@ -1,6 +1,6 @@
 part of domelement;
 
-abstract class CssCapable {
+abstract class CssAttributeCapable {
   Map<String, String> get css => new _CssAttributeMap(nativeElement);
 
   set css(Map<String, String> value) {
