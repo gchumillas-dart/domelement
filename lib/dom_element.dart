@@ -56,6 +56,10 @@ class DomElement extends Object
     callback(this);
   }
 
+  List<DomElement> findAll(String selectors) => _nativeElement
+      .querySelectorAll(selectors)
+      .map((Element element) => new DomElement.fromElement(element));
+
   void remove() => nativeElement.remove();
 
   String toString() => _node2String(nativeElement);
