@@ -14,13 +14,18 @@ abstract class ContentCapable {
     nativeElement.text = new HtmlEscape().convert(value);
   }
 
-  void appendElement(DomElement element) {
-    nativeElement.append(element.nativeElement);
-  }
-
-  void appendHtml(String html) =>
-      nativeElement.insertAdjacentHtml('beforeend', html,
+  void append(dynamic /* String|Element|DomElement */ source) {
+    if (source is String) {
+      nativeElement.insertAdjacentHtml('beforeend', source,
           treeSanitizer: new NullTreeSanitizer());
+    } else if (source is Element || source is DomElement) {
+      DomElement element =
+          source is Element ? new DomElement.fromElement(source) : source;
+      nativeElement.append(element.nativeElement);
+    } else {
+      throw new ArgumentError('Valid values are: String|Element|DomElement');
+    }
+  }
 
   void empty() {
     while (nativeElement.hasChildNodes()) {
@@ -28,11 +33,18 @@ abstract class ContentCapable {
     }
   }
 
-  void prependElement(DomElement element) {
-    nativeElement.append(element.nativeElement);
-  }
-
-  void prependHtml(String html) =>
-      nativeElement.insertAdjacentHtml('afterbegin', html,
+  void prepend(dynamic /* String|Element|DomElement */ source) {
+    if (source is String) {
+      nativeElement.insertAdjacentHtml('afterbegin', source,
           treeSanitizer: new NullTreeSanitizer());
+    } else if (source is Element || source is DomElement) {
+      DomElement element =
+          source is Element ? new DomElement.fromElement(source) : source;
+      List<Node> childNodes = nativeElement.childNodes;
+      Node firstChild = childNodes.length > 0 ? childNodes.first : null;
+      nativeElement.insertBefore(element.nativeElement, firstChild);
+    } else {
+      throw new ArgumentError('Valid values are: String|Element|DomElement');
+    }
+  }
 }
