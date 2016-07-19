@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Sizes Test</title>
+    <script defer src="main.dart" type="application/dart"></script>
+    <script defer src="packages/browser/dart.js"></script>
+    <style>
+    .rectangle {
+      width: 640px;
+      background-color: yellow;
+      border-top: 8px solid green;
+      border-right: 15px solid green;
+      border-bottom: 5px solid green;
+      border-left: 20px solid green;
+      padding: 20px 5px 15px 8px;
+      margin: 5px 15px 8px 20px;
+      overflow: auto;
+    }
+    </style>
+</head>
+
+<body>
+  <form id="control-panel">
+    <table>
+      <tr>
+        <td><label for="width">Width:</label> </td>
+        <td><input type="text" id="width" /></td>
+      </tr>
+      <tr>
+        <td><label for="height">Height:</label> </td>
+        <td><input type="text" id="height" /></td>
+      </tr>
+      <tr>
+        <td><label for="border-width">Border width:</label> </td>
+        <td><input type="text" disabled="true" id="border-width" /></td>
+      </tr>
+      <tr>
+        <td><label for="border-height">Border height:</label> </td>
+        <td><input type="text" disabled="true" id="border-height" /></td>
+      </tr>
+      <tr>
+        <td><label for="padding-width">Padding width:</label> </td>
+        <td><input type="text" disabled="true" id="padding-width" /></td>
+      </tr>
+      <tr>
+        <td><label for="padding-height">Padding height:</label> </td>
+        <td><input type="text" disabled="true" id="padding-height" /></td>
+      </tr>
+      <tr>
+        <td><label for="margin-width">Margin width:</label> </td>
+        <td><input type="text" disabled="true" id="margin-width" /></td>
+      </tr>
+      <tr>
+        <td><label for="margin-height">Margin height:</label> </td>
+        <td><input type="text" disabled="true" id="margin-height" /></td>
+      </tr>
+      <tr>
+        <td>&nbsp;</td>
+        <td><button type="submit">Change</button></td>
+      </tr>
+    </table>
+  </form>
+
+  <div id="div1" class="rectangle">
+    <p>Proin eget tortor risus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus.<p>
+    <p>Pellentesque in ipsum id orci porta dapibus. Donec rutrum congue leo eget malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Donec velit neque, auctor sit amet aliquam vel, ullamcorper sit amet ligula.<p>
+    <p>Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Praesent sapien massa, convallis a pellentesque nec, egestas non nisi. Proin eget tortor risus.</p>
+  </div>
+</body>
+</html>
