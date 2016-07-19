@@ -6,7 +6,6 @@ import 'dart:html';
 import 'dart:math';
 import 'dart:mirrors' hide Comment;
 
-import 'package:html_unescape/html_unescape.dart';
 import 'package:quiver/core.dart';
 
 part 'dom_element.dart';
