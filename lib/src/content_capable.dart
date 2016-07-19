@@ -2,6 +2,7 @@ part of domelement;
 
 typedef dynamic _Callback(DomElement target);
 
+// TODO: implement appendTo and prependTo
 abstract class ContentCapable {
   String get html => nativeElement.innerHtml;
 
