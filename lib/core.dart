@@ -13,7 +13,7 @@ part 'src/attribute_capable.dart';
 part 'src/class_capable.dart';
 part 'src/content_capable.dart';
 part 'src/event_capable.dart';
-part 'src/metrics_capable.dart';
+part 'src/size_capable.dart';
 part 'src/null_tree_sanitizer.dart';
 
 /// This function allow to create instances from different sources.

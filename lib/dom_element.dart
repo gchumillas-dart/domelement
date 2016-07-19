@@ -6,7 +6,7 @@ class DomElement extends Object
         ClassCapable,
         ContentCapable,
         EventCapable,
-        MetricsCapable {
+        SizeCapable {
   Element _nativeElement;
 
   DomElement(String tagName) {

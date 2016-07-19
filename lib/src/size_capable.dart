@@ -1,6 +1,6 @@
 part of domelement;
 
-abstract class MetricsCapable {
+abstract class SizeCapable {
   num get borderHeight =>
       _getSumPropertyValues(['border-top-width', 'border-bottom-width']);
 
