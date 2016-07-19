@@ -3,6 +3,7 @@ library domelement;
 import 'dart:collection';
 import 'dart:convert';
 import 'dart:html';
+import 'dart:math';
 import 'dart:mirrors' hide Comment;
 
 import 'package:html_unescape/html_unescape.dart';

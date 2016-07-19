@@ -19,21 +19,25 @@ class DomElement extends Object
   DomElement.fromString(String html) {
     // removes the self-closing tags
     html = html.replaceAllMapped(
-        new RegExp(r'<\s*(\w+)([^>]*)/>', multiLine: true), (Match m) {
-      List<String> s = [m[1], m[2]]
-          .map((String item) => item?.trim())
-          .where((String item) => item != null && item.length > 0);
-      return '<${s.join(' ')}></${m[1]}>';
+        new RegExp(r'<(\w+)([^>]*)/>', multiLine: true), (Match matches) {
+      String tagName = matches[1];
+      String attributes = matches[2].replaceAll(new RegExp(r'\s+$'), '');
+      String leftSide =
+          [tagName, attributes].where((String item) => item.length > 0).join();
+      return '<${leftSide}></${tagName}>';
     });
+
+    _TagSanitizer sanitizer = new _TagSanitizer();
+    html = sanitizer.suffixReservedTags(html);
 
     DocumentFragment fragment = document.createDocumentFragment();
     fragment.appendHtml(html, treeSanitizer: new NullTreeSanitizer());
-
     if (fragment.children.length != 1) {
-      throw new ArgumentError('Invalid HTML tag');
+      throw new ArgumentError('Invalid HTML');
     }
 
-    _nativeElement = fragment.children.first;
+    _nativeElement =
+        sanitizer.removeSuffixFromElementTree(fragment.children.first);
   }
 
   String get name => _nativeElement.nodeName?.toLowerCase();
@@ -88,5 +92,93 @@ class DomElement extends Object
     }
 
     return str.toString();
+  }
+}
+
+/// This class solves a problem with Document.createDocumentFragment().
+/// It ignores some reserved tags, like TD, TR, TBODY, etc...
+/// This class suffix the reserved tags and then removes those suffixes.
+///
+/// For example:
+///
+///     final sanitizer = new _TagSanitizer();
+///
+///     // suffixes the reserved tags
+///     sanitizer.suffixReservedTags(html);
+///
+///     // creates an element from an arbitrary HTML string
+///     final fragment = document.createDocumentFragment();
+///     fragment.appendHtml(html, treeSanitizer: new NullTreeSanitizer());
+///     final element = fragment.children.first;
+///
+///     // removes suffixes from the element and its child nodes
+///     element = sanitizer.removeSuffixFromElementTree(element);
+///
+class _TagSanitizer {
+  static List<String> _reservedTags = ['td', 'tr', 'tbody', 'thead', 'tfooter'];
+  String _suffix;
+
+  _TagSanitizer() {
+    // generates a random suffix
+    Random r = new Random.secure();
+    String randomSequence =
+        new List<String>.generate(12, (int i) => r.nextInt(100).toString())
+            .join();
+    _suffix = 'suffix${randomSequence}';
+  }
+
+  /// Removes the suffixes from the element and its child nodes
+  Element removeSuffixFromElementTree(Element element) {
+    Element ret = element;
+
+    element.nodeName.replaceAllMapped(
+        new RegExp(_suffix + r'-(\w+)', caseSensitive: false), (Match matches) {
+      String tagName = matches[1];
+      ret = _renameElement(element, tagName);
+      for (Element item in ret.children) {
+        removeSuffixFromElementTree(item);
+      }
+    });
+    return ret;
+  }
+
+  /// Prepends a suffix to the reserved tags
+  String suffixReservedTags(String html) {
+    String ret =
+        html.replaceAllMapped(new RegExp(r'<(\w+)([^>]*)>'), (Match matches) {
+      String tagName = _reservedTags.contains(matches[1])
+          ? _suffix + '-' + matches[1]
+          : matches[1];
+      String attributes = matches[2].replaceAll(new RegExp(r'\s+$'), '');
+      String leftSide =
+          [tagName, attributes].where((String item) => item.length > 0).join();
+      return '<${leftSide}>';
+    });
+
+    ret = ret.replaceAllMapped(new RegExp(r'</(\w+)>'), (Match matches) {
+      String tagName = matches[1] ?? '';
+      if (_reservedTags.contains(tagName)) {
+        tagName = _suffix + '-' + tagName;
+      }
+      return '</${tagName}>';
+    });
+
+    return ret;
+  }
+
+  Element _renameElement(Element element, String newName) {
+    Element renamedElement = document.createElement(newName);
+
+    // copies attributes
+    renamedElement.attributes = element.attributes;
+
+    // moves child nodes
+    while (element.hasChildNodes()) {
+      renamedElement.append(element.firstChild);
+    }
+
+    return element.parent != null
+        ? element.replaceWith(renamedElement)
+        : renamedElement;
   }
 }
