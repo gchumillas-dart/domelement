@@ -4,6 +4,12 @@ abstract class AttributeCapable {
   Map<String, String> get attr => nativeElement.attributes;
   Map<String, String> get css => new _CssAttributeMap(nativeElement);
   Map<String, String> get data => nativeElement.dataset;
+
+  String get value => (nativeElement as InputElement).value;
+  void set value(String v) {
+    (nativeElement as InputElement).value = v;
+  }
+
   Element get nativeElement;
 }
 
