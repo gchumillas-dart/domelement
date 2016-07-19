@@ -49,4 +49,5 @@ DomElement find(String selectors) {
 
 /// Finds a list of elements from the current document.
 List<DomElement> findAll(String selectors) => querySelectorAll(selectors)
-    .map((Element element) => new DomElement.fromElement(element));
+    .map((Element element) => new DomElement.fromElement(element))
+    .toList();

@@ -55,7 +55,8 @@ class DomElement extends Object
 
   List<DomElement> findAll(String selectors) => _nativeElement
       .querySelectorAll(selectors)
-      .map((Element element) => new DomElement.fromElement(element));
+      .map((Element element) => new DomElement.fromElement(element))
+      .toList();
 
   void remove() => nativeElement.remove();
 
