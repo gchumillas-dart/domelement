@@ -11,10 +11,10 @@ abstract class ContentCapable {
 
   Element get nativeElement;
 
-  String get text => new HtmlUnescape().convert(nativeElement.text);
+  String get text => nativeElement.text;
 
   void set text(String value) {
-    nativeElement.text = new HtmlEscape().convert(value);
+    nativeElement.text = value;
   }
 
   void append(
