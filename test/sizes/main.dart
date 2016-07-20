@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:domelement/core.dart';
 
 void updateControlPanel() {
