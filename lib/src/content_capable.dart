@@ -1,4 +1,4 @@
-part of domelement;
+part of domelement.src;
 
 typedef void _Callback(DomElement target);
 

@@ -1,4 +1,4 @@
-part of domelement;
+part of domelement.src;
 
 abstract class ClassCapable {
   Element get nativeElement;

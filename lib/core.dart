@@ -2,21 +2,13 @@
 /// in an easy and intuitive way.
 library domelement;
 
-import 'dart:collection';
 import 'dart:convert';
 import 'dart:html';
 import 'dart:math';
-import 'dart:mirrors' hide Comment;
 
-import 'package:quiver/core.dart';
 import 'package:domelement/src/core.dart';
 
 part 'dom_element.dart';
-part 'src/class_capable.dart';
-part 'src/content_capable.dart';
-part 'src/event_capable.dart';
-part 'src/size_capable.dart';
-part 'src/null_tree_sanitizer.dart';
 
 /// Use this function to create instances from different sources.
 ///
@@ -43,7 +35,7 @@ DomElement $(dynamic /* String|Element|DomElement */ source) {
 
 /// Finds an element from the current document.
 ///
-/// This function may return a null value if the element was not found.
+/// This function may return a `null` value if the element was not found.
 DomElement find(String selectors) {
   Element element = querySelector(selectors);
   return element != null ? new DomElement.fromElement(element) : null;

@@ -1,4 +1,4 @@
-part of domelement;
+part of domelement.src;
 
 // TODO: implement one() method
 abstract class EventCapable {

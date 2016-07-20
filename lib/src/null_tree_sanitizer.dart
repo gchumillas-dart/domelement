@@ -1,4 +1,4 @@
-part of domelement;
+part of domelement.src;
 
 class NullTreeSanitizer implements NodeTreeSanitizer {
   static NullTreeSanitizer _instance;
