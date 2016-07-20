@@ -75,16 +75,22 @@ final items = findAll('p');
 for (final item in items) {
   print(item);
 }
+```
 
-// finds a single element inside another element
+Use `DomElement.find()` and `DomElement.findAll()` to find elements **inside** another element:
+
+```dart
+final p1 = find('#p1');
+
+// finds a single element
 final span1 = p1.find('#span1');
 if (span1 == null) {
   throw 'Element not found';
 }
 
-// finds multiple elements inside another element
-final spanItems = p1.findAll('span');
-for (final item in spanItems) {
+// finds multiple elements
+final items = p1.findAll('span');
+for (final item in item) {
   print(item);
 }
 ```
