@@ -5,22 +5,27 @@ void main() {
   // creates a table and appends it to the body
   // The 'append' method can be used to add internal structures to the recently
   // created element
-  DomElement table = $('<table />')
+  $('<table />')
     ..append((DomElement table) {
       List<Map<String, String>> items = [
         {'firstName': 'John', 'lastName': 'Smith'},
         {'firstName': 'Antonio', 'lastName': 'López'},
         {'firstName': 'Eva', 'lastName': 'Garrido'}
       ];
-      table.appendString('<tr><th>First Name</th><th>Last Name</th></tr>');
-      for (Map<String, String> item in items) {
-        DomElement tr = $('<tr />')
-          ..appendElement($('<td />')..text = item['firstName'])
-          ..appendElement($('<td />')..text = item['lastName']);
-        table.appendElement(tr);
-      }
-    });
-  find('body').appendElement(table);
+      table
+        ..appendElement($('<thead />')
+          ..appendString('<tr><th>First Name</th><th>Last Name</th></tr>'))
+        ..appendElement($('<tbody />')
+          ..append((DomElement tbody) {
+            for (Map<String, String> item in items) {
+              $('<tr />')
+                ..appendElement($('<td />')..text = item['firstName'])
+                ..appendElement($('<td />')..text = item['lastName'])
+                ..appendTo(tbody);
+            }
+          }));
+    })
+    ..appendTo(find('body'));
 
   // changes some inner html texts
   DomElement ul = find('#ul1');
