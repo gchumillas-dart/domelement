@@ -21,7 +21,7 @@ final element0 = find('#element0');
 final element1 = find('#element1');
 element1.appendElement(element0, prepend: true);
 ```
-The above example is only one of many examples in which the code can be drastically simplified. In any case, I would like to clarify that this library **does not pretend to replace** the official Dart's library. But in most of cases you won't need to use it.
+The above example is only one of many examples in which the code can be drastically simplified. In any case, I would like to remark that this library **does not pretend to replace** the official Dart's library. But in most of cases you won't need to use it.
 
 ## Install
 
@@ -73,24 +73,6 @@ if (p1 == null) {
 // finds multiple elements
 final items = findAll('p');
 for (final item in items) {
-  print(item);
-}
-```
-
-Use `DomElement.find()` and `DomElement.findAll()` to find elements **inside** another element:
-
-```dart
-final p1 = find('#p1');
-
-// finds a single element
-final span1 = p1.find('#span1');
-if (span1 == null) {
-  throw 'Element not found';
-}
-
-// finds multiple elements
-final items = p1.findAll('span');
-for (final item in item) {
   print(item);
 }
 ```
