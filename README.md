@@ -61,6 +61,30 @@ void main() {
 
 ## Finding elements
 
-Use `find` and `findAll` to select elements from the current document:
+Use `find()` and `findAll()` to select elements from the current document:
 
+```dart
+// finds a single element
+final p1 = find('#p1');
+if (p1 == null) {
+  throw 'Item not found';
+}
+
+// finds multiple elements
+final items = findAll('p');
+for (final item in items) {
+  print(item);
+}
+
+// finds a single element inside another element
+final span1 = p1.find('#span1');
+if (span1 == null) {
+  throw 'Element not found';
+}
+
+// finds multiple elements inside another element
+final spanItems = p1.findAll('span');
+for (final item in spanItems) {
+  print(item);
+}
 ```
