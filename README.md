@@ -21,5 +21,4 @@ final element0 = find('#element0');
 final element1 = find('#element1');
 element1.appendElement(element0, prepend: true);
 ```
-
-In any case, I would like to clarify that this library **does not pretend to replace** the official Dart API. But in most of cases you won't need to use it.
+The above example is only one of many examples in which the code can be drastically simplified. In any case, I would like to clarify that this library **does not pretend to replace** the official Dart API. But in most of cases you won't need to use it.
