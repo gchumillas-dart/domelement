@@ -15,7 +15,6 @@ class DomElement extends Object
 
   DomElement.fromElement(this._nativeElement);
 
-  // TODO: fails on TD, TR, TBODY... tags names
   DomElement.fromString(String html) {
     // removes the self-closing tags
     html = html.replaceAllMapped(
