@@ -136,4 +136,4 @@ find('#anchor2')
 
 As I mentioned previously this library does not pretend to replace the official Dart's library. It can't cover all cases, even though it covers the most common cases.
 
-The most important limitation is that it operates only only over [DOM Elements](https://api.dartlang.org/stable/1.17.1/dart-html/Element-class.html). If you want to operate over other type of nodes (like [Texts](https://api.dartlang.org/stable/1.17.1/dart-html/Text-class.html) or [Comments](https://api.dartlang.org/stable/1.17.1/dart-html/Comment-class.html)), you'd better use the official Dart's library.
+The most important limitation is that it operates only over [DOM Elements](https://api.dartlang.org/stable/1.17.1/dart-html/Element-class.html). If you want to operate over other type of nodes (like [Texts](https://api.dartlang.org/stable/1.17.1/dart-html/Text-class.html) or [Comments](https://api.dartlang.org/stable/1.17.1/dart-html/Comment-class.html)), you'd better use the official Dart's library.
