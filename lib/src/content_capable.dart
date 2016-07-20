@@ -36,6 +36,10 @@ abstract class ContentCapable {
   void appendTo(DomElement element, {bool prepend: false}) =>
       element.appendElement(this, prepend: prepend);
 
+  /// Appends an [element] into [this] instance.
+  ///
+  /// The [prepend] flag determines whether the [element] is added to the
+  /// beggining or the end.
   void appendElement(DomElement element, {bool prepend: false}) {
     if (prepend) {
       List<Node> childNodes = nativeElement.childNodes;
