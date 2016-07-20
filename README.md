@@ -23,7 +23,7 @@ element1.appendElement(element0, prepend: true);
 ```
 The above example is only one of many examples in which the code can be drastically simplified. In any case, I would like to clarify that this library **does not pretend to replace** the official Dart API. But in most of cases you won't need to use it.
 
-# Install
+## Install
 
 Edit your `pubspec.yaml` and add the library dependency:
 
@@ -43,6 +43,24 @@ domelement:
 ```
 
 And then gets the dependencies:
+
 ```bash
 > pub get
+```
+
+Finally, import the library from the source code:
+
+```dart
+import 'package:domelement/core.dart';
+
+void main() {
+  final element = find('#element_id');
+  print(element);
+}
+```
+
+## Finding elements
+
+Use `find` and `findAll` to select elements from the current document:
+
 ```
