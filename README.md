@@ -132,5 +132,6 @@ find('#anchor2')
   ..trigger('click', data: 'Hello there!');
 ```
 
-For more info go to the WiKi pages:  
-https://github.com/angular/angular/wiki
+## Limitations
+
+This library operates only over [DOM Elements](https://api.dartlang.org/stable/1.17.1/dart-html/Element-class.html). If you want to operate over other type of nodes (like [Texts](https://api.dartlang.org/stable/1.17.1/dart-html/Text-class.html) or [Comments](https://api.dartlang.org/stable/1.17.1/dart-html/Comment-class.html)), you'd better use the official Dart's library.
