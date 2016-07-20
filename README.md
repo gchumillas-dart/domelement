@@ -94,3 +94,20 @@ for (final item in item) {
   print(item);
 }
 ```
+
+## Creating elements
+
+Let's create a new element and append it to the body's document:
+
+```dart
+final anchor = $('<a />')
+  // sets some attributes
+  ..attr['href'] = 'http://blah blah blah'
+  ..attr['title'] = 'Anchor title'
+  // sets some CSS attributes
+  ..css['color'] = '#333'
+  ..css['font-weight'] = 'bold'
+  // sets inner texts
+  ..text = 'Click here...';
+find('body').appendElement(anchor);
+```
