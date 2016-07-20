@@ -1,6 +1,6 @@
 part of domelement;
 
-typedef dynamic _Callback(DomElement target);
+typedef void _Callback(DomElement target);
 
 // TODO: implement appendTo and prependTo
 abstract class ContentCapable {
@@ -17,45 +17,35 @@ abstract class ContentCapable {
     nativeElement.text = value;
   }
 
-  void append(
-      dynamic /* String|Element|DomElement|(DomElement) => dynamic */ source) {
-    if (source is String) {
-      nativeElement.insertAdjacentHtml('beforeend', source,
-          treeSanitizer: new NullTreeSanitizer());
-    } else if (source is Element || source is DomElement) {
-      DomElement element =
-          source is Element ? new DomElement.fromElement(source) : source;
+  /// This is a convenient function to create new element.
+  /// For example:
+  ///
+  ///     final span = $('<p />')
+  ///         ..append((target) {
+  ///           target.appendString('<span>Some text here</span>');
+  ///           target.appendString('<em>Cursive text here</em>');
+  ///         });
+  ///
+  void append(_Callback callback) => callback(this);
+
+  void appendElement(DomElement element, {bool prepend: false}) {
+    if (prepend) {
       nativeElement.append(element.nativeElement);
-    } else if (source is _Callback) {
-      append(source(this));
-    } else if (source != null) {
-      throw new ArgumentError('Valid values are: ' +
-          'String|Element|DomElement|(DomElement) => dynamic');
+    } else {
+      List<Node> childNodes = nativeElement.childNodes;
+      Node firstChild = childNodes.length > 0 ? childNodes.first : null;
+      nativeElement.insertBefore(element.nativeElement, firstChild);
     }
+  }
+
+  void appendString(String html, {bool prepend: false}) {
+    nativeElement.insertAdjacentHtml(prepend ? 'beforeend' : 'afterbegin', html,
+        treeSanitizer: new NullTreeSanitizer());
   }
 
   void empty() {
     while (nativeElement.hasChildNodes()) {
       nativeElement.firstChild.remove();
-    }
-  }
-
-  void prepend(
-      dynamic /* String|Element|DomElement|(DomElement) => dynamic */ source) {
-    if (source is String) {
-      nativeElement.insertAdjacentHtml('afterbegin', source,
-          treeSanitizer: new NullTreeSanitizer());
-    } else if (source is Element || source is DomElement) {
-      DomElement element =
-          source is Element ? new DomElement.fromElement(source) : source;
-      List<Node> childNodes = nativeElement.childNodes;
-      Node firstChild = childNodes.length > 0 ? childNodes.first : null;
-      nativeElement.insertBefore(element.nativeElement, firstChild);
-    } else if (source is _Callback) {
-      prepend(source(this));
-    } else if (source != null) {
-      throw new ArgumentError('Valid values are: ' +
-          'String|Element|DomElement|(DomElement) => dynamic');
     }
   }
 }
