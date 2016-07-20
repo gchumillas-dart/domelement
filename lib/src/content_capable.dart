@@ -28,6 +28,9 @@ abstract class ContentCapable {
   ///
   void append(_Callback callback) => callback(this);
 
+  void appendTo(DomElement element, {bool prepend: false}) =>
+      element.appendElement(this, prepend: prepend);
+
   void appendElement(DomElement element, {bool prepend: false}) {
     if (prepend) {
       nativeElement.append(element.nativeElement);
