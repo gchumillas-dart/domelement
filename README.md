@@ -79,9 +79,10 @@ for (final item in items) {
 
 ## Creating elements
 
-Let's create a new element and append it to the body's document:
+Use the `$()` function to create elements. For example:
 
 ```dart
+// creates an anchor element and appends it to the document's body
 final anchor = $('<a />')
   // sets some attributes
   ..attr['href'] = 'http://blah blah blah'
@@ -92,6 +93,10 @@ final anchor = $('<a />')
   // sets inner texts
   ..text = 'Click here...';
 find('body').appendElement(anchor);
+
+// creates an element from a previous native element
+final root = $(document.documentElement);
+print(root);
 ```
 
 ## Responding to events
