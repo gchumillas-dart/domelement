@@ -127,5 +127,5 @@ The most important limitation is that it operates only over [DOM Elements](https
 
 ## Additional info
 
-For additional info, check out the API reference:  
+For additional info, check out the API documentation:  
 https://www.dartdocs.org/documentation/domelement/0.0.1/domelement/domelement-library.html
