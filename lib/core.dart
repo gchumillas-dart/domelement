@@ -16,16 +16,15 @@ part 'src/event_capable.dart';
 part 'src/size_capable.dart';
 part 'src/null_tree_sanitizer.dart';
 
-/// This function allow to create instances from different sources.
+/// Use this function to create instances from different sources.
 /// For example:
 ///
-///     // The following command is equivalent to ...
+///     // creates a SPAN element
 ///     $('<span title="Span title">Some text..</span>');
 ///
-///     // the following command
-///     DomElement elem = new DomElement('span')
-///       ..attr['title'] = 'Some title'
-///       ..text = 'Some text';
+///     // creates an element from a native element
+///     DomElement root = $(document.documentElement);
+///
 DomElement $(dynamic /* String|Element|DomElement */ source) {
   DomElement node;
   if (source is String) {
