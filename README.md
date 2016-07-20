@@ -6,7 +6,7 @@ The [dart:html](https://api.dartlang.org/stable/1.17.1/dart-html/dart-html-libra
 // prepends element0 into element1
 final element0 = querySelector('#element0_id');
 final element1 = querySelector('#element1_id');
-if (element1.hasChildNodes() > 0) {
+if (element1.hasChildNodes()) {
   element1.insertBefore(element0, element1.childNodes.first);
 } else {
   element1.append(element0);
@@ -21,3 +21,5 @@ final element0 = find('#element0');
 final element1 = find('#element1');
 element1.appendElement(element0, prepend: true);
 ```
+
+In any case, I would like to clarify that this library **does not pretend to replace** the official Dart API. But in most of cases you won't need to use it.
