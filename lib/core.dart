@@ -9,9 +9,9 @@ import 'dart:math';
 import 'dart:mirrors' hide Comment;
 
 import 'package:quiver/core.dart';
+import 'package:domelement/src/core.dart';
 
 part 'dom_element.dart';
-part 'src/attribute_capable.dart';
 part 'src/class_capable.dart';
 part 'src/content_capable.dart';
 part 'src/event_capable.dart';
