@@ -22,3 +22,27 @@ final element1 = find('#element1');
 element1.appendElement(element0, prepend: true);
 ```
 The above example is only one of many examples in which the code can be drastically simplified. In any case, I would like to clarify that this library **does not pretend to replace** the official Dart API. But in most of cases you won't need to use it.
+
+# Install
+
+Edit your `pubspec.yaml` and add the library dependency:
+
+```yaml
+dependencies:
+  # specify the version number, for example ^0.0.1
+  domelement: <version number>
+```
+
+Alternatively, you can pull the library from the GitHub repository:
+```yaml
+domelement:
+  # specify the tag number, for example v0.0.1 (ref entry can be omitted)
+  git:
+    url: git://github.com/soloproyectos-dart/domelement.git
+    ref: <tag name>
+```
+
+And then gets the dependencies:
+```bash
+> pub get
+```
