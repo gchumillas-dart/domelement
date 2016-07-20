@@ -4,30 +4,35 @@ typedef void _Callback(DomElement target);
 
 // TODO: implement appendTo and prependTo
 abstract class ContentCapable {
+  /// Gets or sets inner HTML contents.
   String get html => nativeElement.innerHtml;
-
   void set html(String value) =>
       nativeElement.setInnerHtml(value, treeSanitizer: new NullTreeSanitizer());
 
   Element get nativeElement;
 
+  /// Gets or sets inner text contents.
   String get text => nativeElement.text;
 
   void set text(String value) {
     nativeElement.text = value;
   }
 
-  /// This is a convenient function to create new element.
+  /// This is a convenient function to create internal structures.
+  ///
   /// For example:
   ///
+  ///     // creates a new element and adds internal structures
   ///     final span = $('<p />')
   ///         ..append((target) {
+  ///           // appends some nodes
   ///           target.appendString('<span>Some text here</span>');
   ///           target.appendString('<em>Cursive text here</em>');
   ///         });
   ///
   void append(_Callback callback) => callback(this);
 
+  /// Appends the [this] instance into [element].
   void appendTo(DomElement element, {bool prepend: false}) =>
       element.appendElement(this, prepend: prepend);
 
@@ -41,11 +46,13 @@ abstract class ContentCapable {
     }
   }
 
+  /// Appends a HTML string.
   void appendString(String html, {bool prepend: false}) {
     nativeElement.insertAdjacentHtml(prepend ? 'beforeend' : 'afterbegin', html,
         treeSanitizer: new NullTreeSanitizer());
   }
 
+  /// Removes all child nodes.
   void empty() {
     while (nativeElement.hasChildNodes()) {
       nativeElement.firstChild.remove();

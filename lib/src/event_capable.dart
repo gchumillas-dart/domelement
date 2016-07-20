@@ -11,11 +11,13 @@ abstract class EventCapable {
               key1.type == key2.type &&
               key1.handler == key2.handler);
 
+  /// Removes an event listener.
   void off(String type, Function handler) {
     nativeElement.removeEventListener(type,
         _eventHandlers.remove(new _EventHandler(nativeElement, type, handler)));
   }
 
+  /// Attaches an event listener.
   void on(String type, Function handler) {
     EventListener listener = _eventHandlers.putIfAbsent(
         new _EventHandler(nativeElement, type, handler),
@@ -23,6 +25,10 @@ abstract class EventCapable {
     nativeElement.addEventListener(type, listener);
   }
 
+  /// Disptaches an event.
+  ///
+  /// This function dispatches a [type] event and, eventually, provides
+  /// some [data] to the event listener.
   void trigger(String type, {dynamic data}) {
     nativeElement.dispatchEvent(new CustomEvent(type, detail: data));
   }

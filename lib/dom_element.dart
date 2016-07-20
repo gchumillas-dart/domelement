@@ -9,12 +9,21 @@ class DomElement extends Object
         SizeCapable {
   Element _nativeElement;
 
+  /// Creates an instance from a tag name.
   DomElement(String tagName) {
     _nativeElement = document.createElement(tagName);
   }
 
+  /// Creates an instance from a native element.
   DomElement.fromElement(this._nativeElement);
 
+  /// Creates an instance from a HTML string.
+  ///
+  /// For example:
+  ///
+  ///     final element = new DomElement.fromString(
+  ///       '<span style="border: 1px solid red">Some text</span>');
+  ///
   DomElement.fromString(String html) {
     // removes the self-closing tags
     html = html.replaceAllMapped(
@@ -39,28 +48,38 @@ class DomElement extends Object
         sanitizer.removeSuffixFromElementTree(fragment.children.first);
   }
 
+  /// Gets the element tag name.
   String get name => _nativeElement.nodeName?.toLowerCase();
 
+  /// Gets the native element.
   Element get nativeElement => _nativeElement;
 
+  /// Gets the parent element.
+  ///
+  /// This function may return `null` if the element has no parent.
   DomElement get parent => _nativeElement.parent != null
       ? new DomElement.fromElement(_nativeElement.parent)
       : null;
 
+  /// Finds a element by a CSS [selector].
   DomElement find(String selectors) {
     Element element = _nativeElement.querySelector(selectors);
     return element != null ? new DomElement.fromElement(element) : null;
   }
 
+  /// Finds a list of elements by a CSS [selector].
   List<DomElement> findAll(String selectors) => _nativeElement
       .querySelectorAll(selectors)
       .map((Element element) => new DomElement.fromElement(element))
       .toList();
 
+  /// Removes [this] instance from the current document.
   void remove() => nativeElement.remove();
 
+  /// Gets a string representation of [this] instance.
   String toString() => _node2String(nativeElement);
 
+  /// Prints a string representation of a node.
   String _node2String(Node node) {
     StringBuffer str = new StringBuffer();
 
