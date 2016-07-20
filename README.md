@@ -4,8 +4,8 @@ The [dart:html](https://api.dartlang.org/stable/1.17.1/dart-html/dart-html-libra
 
 ```dart
 // prepends element0 into element1
-final element0 = querySelector('#element0_id');
-final element1 = querySelector('#element1_id');
+final element0 = querySelector('#element0');
+final element1 = querySelector('#element1');
 if (element1.hasChildNodes()) {
   element1.insertBefore(element0, element1.childNodes.first);
 } else {
