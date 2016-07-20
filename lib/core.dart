@@ -1,3 +1,5 @@
+/// A library to traverse and manipulate DOM documents
+/// in an easy and intuitive way.
 library domelement;
 
 import 'dart:collection';
@@ -17,6 +19,7 @@ part 'src/size_capable.dart';
 part 'src/null_tree_sanitizer.dart';
 
 /// Use this function to create instances from different sources.
+///
 /// For example:
 ///
 ///     // creates a SPAN element
@@ -39,6 +42,7 @@ DomElement $(dynamic /* String|Element|DomElement */ source) {
 }
 
 /// Finds an element from the current document.
+///
 /// This function may return a null value if the element was not found.
 DomElement find(String selectors) {
   Element element = querySelector(selectors);
