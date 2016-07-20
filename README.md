@@ -124,7 +124,8 @@ find('#anchor1').on('click', () => print('Click!'));
 find('#anchor2')
   ..on('click', (event, data) {
     print('Data: ${data}');
-    // by returning 'false' stops the event from bubbling up the event chain and prevents the default action
+    // by returning 'false' stops the event
+    // from bubbling up the event chain and prevents the default action
     // in similar way as jQuery does
     return false;
   })
