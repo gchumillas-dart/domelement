@@ -132,5 +132,5 @@ find('#anchor2')
   ..trigger('click', data: 'Hello there!');
 ```
 
-For more info, go to the WiKi pages:  
+For more info go to the WiKi pages:  
 https://github.com/angular/angular/wiki
