@@ -112,7 +112,7 @@ final anchor = $('<a />')
 find('body').appendElement(anchor);
 ```
 
-### Responding to events
+## Responding to events
 
 Use `on()`, `off()` and `trigger()` to operate events:
 
