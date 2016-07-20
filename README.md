@@ -36,7 +36,7 @@ dependencies:
 Alternatively, you can pull the library from the GitHub repository:
 ```yaml
 domelement:
-  # specify the tag number, for example v0.0.1 (ref entry can be omitted)
+  # specify the tag name, for example v0.0.1 (ref entry can be omitted)
   git:
     url: git://github.com/soloproyectos-dart/domelement.git
     ref: <tag name>
