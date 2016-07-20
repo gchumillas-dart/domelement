@@ -18,7 +18,7 @@ abstract class ClassCapable {
 
   /// Adds or removes a CSS class.
   ///
-  /// Adds or removes a CSS class, depending on the class
+  /// Adds or removes a CSS class, depending on whether the class
   /// was already present or not.
   void toggleClass(String className) {
     hasClass(className) ? removeClass(className) : addClass(className);
