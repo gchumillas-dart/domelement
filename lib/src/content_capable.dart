@@ -33,11 +33,11 @@ abstract class ContentCapable {
 
   void appendElement(DomElement element, {bool prepend: false}) {
     if (prepend) {
-      nativeElement.append(element.nativeElement);
-    } else {
       List<Node> childNodes = nativeElement.childNodes;
       Node firstChild = childNodes.length > 0 ? childNodes.first : null;
       nativeElement.insertBefore(element.nativeElement, firstChild);
+    } else {
+      nativeElement.append(element.nativeElement);
     }
   }
 
