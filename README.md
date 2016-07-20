@@ -1,6 +1,6 @@
 # DomElement
 
-The [dart:html](https://api.dartlang.org/stable/1.17.1/dart-html/dart-html-library.html) library provides a set of functions and classes to access DOM structure. But, sometimes, making the most simple and common operations results in a contraintuitive experience. For example, let's say that you want to 'prepend' some element into another element:
+The [dart:html](https://api.dartlang.org/stable/1.17.1/dart-html/dart-html-library.html) library provides a set of functions and classes to access DOM nodes. But, sometimes, making the most simple and common operations results in a counterintuitive experience. For instance, let's say that you want to 'prepend' some element into another element:
 
 ```dart
 // prepends element0 into element1
