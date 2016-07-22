@@ -2,7 +2,6 @@ part of domelement.src;
 
 typedef void _Callback(DomElement target);
 
-// TODO: implement appendTo and prependTo
 abstract class ContentCapable {
   /// Gets or sets inner HTML contents.
   String get html => nativeElement.innerHtml;
