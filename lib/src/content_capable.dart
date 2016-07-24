@@ -23,10 +23,10 @@ abstract class ContentCapable {
   ///
   ///     // creates a new element and adds internal structures
   ///     final span = $('<p />')
-  ///         ..append((target) {
+  ///         ..add((target) {
   ///           // appends some nodes
-  ///           target.appendString('<span>Some text here</span>');
-  ///           target.appendString('<em>Cursive text here</em>');
+  ///           target.addString('<span>Some text here</span>');
+  ///           target.addString('<em>Cursive text here</em>');
   ///         });
   ///
   void add(_Callback callback) => callback(this);

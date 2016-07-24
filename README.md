@@ -19,7 +19,7 @@ Using this library the previous code can be written as follows:
 // prepends element0 into element1
 final element0 = find('#element0');
 final element1 = find('#element1');
-element1.appendElement(element0, prepend: true);
+element1.addElement(element0, prepend: true);
 ```
 The above example is only one of many examples in which the code can be drastically simplified. In any case, I would like to remark that this library **does not pretend to replace** the official Dart's library. But in most cases you won't need to use it.
 
@@ -92,7 +92,7 @@ final anchor = $('<a />')
   ..css['font-weight'] = 'bold'
   // sets inner texts
   ..text = 'Click here...';
-find('body').appendElement(anchor);
+find('body').addElement(anchor);
 
 // creates an element from a previous native element
 final root = $(document.documentElement);
