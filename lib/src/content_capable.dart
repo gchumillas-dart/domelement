@@ -31,15 +31,15 @@ abstract class ContentCapable {
   ///
   void add(_Callback callback) => callback(this);
 
-  /// Appends the [this] instance into [element].
+  /// Adds the [this] instance into [element].
   void addTo(DomElement element, {bool prepend: false}) =>
-      element.appendElement(this, prepend: prepend);
+      element.addElement(this, prepend: prepend);
 
-  /// Appends an [element] into [this] instance.
+  /// Adds an [element] into [this] instance.
   ///
   /// The [prepend] flag determines whether the [element] is added to the
   /// beggining or the end.
-  void appendElement(DomElement element, {bool prepend: false}) {
+  void addElement(DomElement element, {bool prepend: false}) {
     if (prepend) {
       List<Node> childNodes = nativeElement.childNodes;
       Node firstChild = childNodes.length > 0 ? childNodes.first : null;

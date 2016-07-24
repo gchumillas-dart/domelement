@@ -13,14 +13,14 @@ void main() {
         {'firstName': 'Eva', 'lastName': 'Garrido'}
       ];
       table
-        ..appendElement($('<thead />')
+        ..addElement($('<thead />')
           ..appendString('<tr><th>First Name</th><th>Last Name</th></tr>'))
-        ..appendElement($('<tbody />')
+        ..addElement($('<tbody />')
           ..add((DomElement tbody) {
             for (Map<String, String> item in items) {
               $('<tr />')
-                ..appendElement($('<td />')..text = item['firstName'])
-                ..appendElement($('<td />')..text = item['lastName'])
+                ..addElement($('<td />')..text = item['firstName'])
+                ..addElement($('<td />')..text = item['lastName'])
                 ..addTo(tbody);
             }
           }));
@@ -48,7 +48,7 @@ void main() {
   // appends elements
   Element span1 = document.createElement('span');
   Element span2 = document.createElement('span');
-  find('#p3')..appendElement($(span1))..appendElement($(span2));
+  find('#p3')..addElement($(span1))..addElement($(span2));
   span1.text = '--Span added to the end';
   span2.text = 'Span added to the beggining--';
 
@@ -63,7 +63,7 @@ void main() {
   DomElement root = $('<root />')
     ..add((DomElement target) {
       for (int i = 0; i < 3; i++) {
-        target.appendElement($('<item />')
+        target.addElement($('<item />')
           ..attr['title'] = 'Title ${i}'
           ..text = 'Text ${i}');
       }
