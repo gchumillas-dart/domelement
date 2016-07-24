@@ -21,7 +21,7 @@ void main() {
               $('<tr />')
                 ..appendElement($('<td />')..text = item['firstName'])
                 ..appendElement($('<td />')..text = item['lastName'])
-                ..appendTo(tbody);
+                ..addTo(tbody);
             }
           }));
     })

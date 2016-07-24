@@ -32,7 +32,7 @@ abstract class ContentCapable {
   void add(_Callback callback) => callback(this);
 
   /// Appends the [this] instance into [element].
-  void appendTo(DomElement element, {bool prepend: false}) =>
+  void addTo(DomElement element, {bool prepend: false}) =>
       element.appendElement(this, prepend: prepend);
 
   /// Appends an [element] into [this] instance.
