@@ -6,7 +6,7 @@ void main() {
   // The 'append' method can be used to add internal structures to the recently
   // created element
   $('<table />')
-    ..append((DomElement table) {
+    ..add((DomElement table) {
       List<Map<String, String>> items = [
         {'firstName': 'John', 'lastName': 'Smith'},
         {'firstName': 'Antonio', 'lastName': 'López'},
@@ -16,7 +16,7 @@ void main() {
         ..appendElement($('<thead />')
           ..appendString('<tr><th>First Name</th><th>Last Name</th></tr>'))
         ..appendElement($('<tbody />')
-          ..append((DomElement tbody) {
+          ..add((DomElement tbody) {
             for (Map<String, String> item in items) {
               $('<tr />')
                 ..appendElement($('<td />')..text = item['firstName'])
@@ -54,14 +54,14 @@ void main() {
 
   // changes internal structures
   find('#div1')
-    ..append((DomElement target) {
+    ..add((DomElement target) {
       target.appendString('<p>Lorem Ipsum<br>Dolor Sit<br>Amet</p>');
     });
 
   // creates a new element from scratch
   // you can create non-standard elements on the fly
   DomElement root = $('<root />')
-    ..append((DomElement target) {
+    ..add((DomElement target) {
       for (int i = 0; i < 3; i++) {
         target.appendElement($('<item />')
           ..attr['title'] = 'Title ${i}'

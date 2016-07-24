@@ -29,7 +29,7 @@ abstract class ContentCapable {
   ///           target.appendString('<em>Cursive text here</em>');
   ///         });
   ///
-  void append(_Callback callback) => callback(this);
+  void add(_Callback callback) => callback(this);
 
   /// Appends the [this] instance into [element].
   void appendTo(DomElement element, {bool prepend: false}) =>
