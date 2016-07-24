@@ -25,7 +25,7 @@ void main() {
             }
           }));
     })
-    ..appendTo(find('body'));
+    ..addTo(find('body'));
 
   // changes some inner html texts
   DomElement ul = find('#ul1');
