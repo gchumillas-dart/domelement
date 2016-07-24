@@ -14,7 +14,7 @@ void main() {
       ];
       table
         ..addElement($('<thead />')
-          ..appendString('<tr><th>First Name</th><th>Last Name</th></tr>'))
+          ..addString('<tr><th>First Name</th><th>Last Name</th></tr>'))
         ..addElement($('<tbody />')
           ..add((DomElement tbody) {
             for (Map<String, String> item in items) {
@@ -42,8 +42,8 @@ void main() {
 
   // appends HTML texts
   find('#p2')
-    ..appendString('--Text added to the end')
-    ..appendString('Text added to the beggining--');
+    ..addString('--Text added to the end')
+    ..addString('Text added to the beggining--');
 
   // appends elements
   Element span1 = document.createElement('span');
@@ -55,7 +55,7 @@ void main() {
   // changes internal structures
   find('#div1')
     ..add((DomElement target) {
-      target.appendString('<p>Lorem Ipsum<br>Dolor Sit<br>Amet</p>');
+      target.addString('<p>Lorem Ipsum<br>Dolor Sit<br>Amet</p>');
     });
 
   // creates a new element from scratch

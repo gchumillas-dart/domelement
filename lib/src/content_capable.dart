@@ -49,13 +49,16 @@ abstract class ContentCapable {
     }
   }
 
-  /// Appends a HTML string.
-  void appendString(String html, {bool prepend: false}) {
+  /// Adds a HTML string.
+  void addString(String html, {bool prepend: false}) {
     nativeElement.insertAdjacentHtml(prepend ? 'beforeend' : 'afterbegin', html,
         treeSanitizer: new NullTreeSanitizer());
   }
 
   /// Removes all child nodes.
+  ///
+  /// The [prepend] flag determines whether the [element] is added to the
+  /// beggining or the the end.
   void empty() {
     while (nativeElement.hasChildNodes()) {
       nativeElement.firstChild.remove();
