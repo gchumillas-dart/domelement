@@ -34,12 +34,22 @@ abstract class AttributeCapable {
   Map<String, String> get data => nativeElement.dataset;
 
   /// Input value.
-  ///
-  /// This function may throw an exception if the target
-  /// is not an input element.
-  String get value => (nativeElement as InputElement).value;
-  void set value(String v) {
-    (nativeElement as InputElement).value = v;
+  String get value {
+    Element element = nativeElement;
+    if (element is InputElement) {
+      return element.value;
+    } else {
+      throw new UnsupportedError('Not an input element');
+    }
+  }
+
+  set value(String v) {
+    Element element = nativeElement;
+    if (element is InputElement) {
+      element.value = v;
+    } else {
+      throw new UnsupportedError('Not an input element');
+    }
   }
 
   Element get nativeElement;
@@ -50,19 +60,24 @@ class _CssAttributeMap extends MapBase<String, String> {
 
   _CssAttributeMap(this._target);
 
+  @override
   Iterable<String> get keys {
     return new List<String>.generate(
         _target.style.length, (int i) => _target.style.item(i));
   }
 
+  @override
   String operator [](Object key) =>
       _target.style.getPropertyValue(key.toString());
 
+  @override
   void operator []=(Object key, String value) =>
       _target.style.setProperty(key.toString(), value);
 
+  @override
   void clear() =>
       keys.forEach((String key) => _target.style.removeProperty(key));
 
+  @override
   String remove(Object key) => _target.style.removeProperty(key.toString());
 }

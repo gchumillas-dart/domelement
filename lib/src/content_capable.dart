@@ -5,7 +5,7 @@ typedef void _Callback(DomElement target);
 abstract class ContentCapable {
   /// Gets or sets inner HTML contents.
   String get html => nativeElement.innerHtml;
-  void set html(String value) =>
+  set html(String value) =>
       nativeElement.setInnerHtml(value, treeSanitizer: new NullTreeSanitizer());
 
   Element get nativeElement;
@@ -13,7 +13,7 @@ abstract class ContentCapable {
   /// Gets or sets inner text contents.
   String get text => nativeElement.text;
 
-  void set text(String value) {
+  set text(String value) {
     nativeElement.text = value;
   }
 
@@ -56,9 +56,6 @@ abstract class ContentCapable {
   }
 
   /// Removes all child nodes.
-  ///
-  /// The [prepend] flag determines whether the [element] is added to the
-  /// beggining or the the end.
   void empty() {
     while (nativeElement.hasChildNodes()) {
       nativeElement.firstChild.remove();

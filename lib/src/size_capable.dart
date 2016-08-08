@@ -11,7 +11,7 @@ abstract class SizeCapable {
 
   /// Gets or Sets height.
   num get height => _getSumPropertyValues(<String>['height']);
-  void set height(num value) {
+  set height(num value) {
     nativeElement.style.height = '${value}px';
   }
 
@@ -35,7 +35,7 @@ abstract class SizeCapable {
 
   /// Gets or sets height.
   num get width => _getSumPropertyValues(<String>['width']);
-  void set width(num value) {
+  set width(num value) {
     nativeElement.style.width = '${value}px';
   }
 

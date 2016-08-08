@@ -15,5 +15,6 @@ class NullTreeSanitizer implements NodeTreeSanitizer {
 
   NullTreeSanitizer._internal();
 
+  @override
   void sanitizeTree(Node node) {}
 }

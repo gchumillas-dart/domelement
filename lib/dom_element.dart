@@ -33,7 +33,7 @@ class DomElement extends Object
       String leftSide = <String>[tagName, attributes]
           .where((String item) => item.length > 0)
           .join();
-      return '<${leftSide}></${tagName}>';
+      return '<$leftSide></$tagName>';
     });
 
     _TagSanitizer sanitizer = new _TagSanitizer();
@@ -53,6 +53,7 @@ class DomElement extends Object
   String get name => _nativeElement.nodeName?.toLowerCase();
 
   /// Gets the native element.
+  @override
   Element get nativeElement => _nativeElement;
 
   /// Gets the parent element.
@@ -62,13 +63,13 @@ class DomElement extends Object
       ? new DomElement.fromElement(_nativeElement.parent)
       : null;
 
-  /// Finds a element by a CSS [selector].
+  /// Finds a element by a CSS [selectors].
   DomElement find(String selectors) {
     Element element = _nativeElement.querySelector(selectors);
     return element != null ? new DomElement.fromElement(element) : null;
   }
 
-  /// Finds a list of elements by a CSS [selector].
+  /// Finds a list of elements by a CSS [selectors].
   List<DomElement> findAll(String selectors) => _nativeElement
       .querySelectorAll(selectors)
       .map((Element element) => new DomElement.fromElement(element))
@@ -78,6 +79,7 @@ class DomElement extends Object
   void remove() => nativeElement.remove();
 
   /// Gets a string representation of [this] instance.
+  @override
   String toString() => _node2String(nativeElement);
 
   /// Prints a string representation of a node.
@@ -150,7 +152,7 @@ class _TagSanitizer {
     String randomSequence =
         new List<String>.generate(12, (int i) => r.nextInt(100).toString())
             .join();
-    _suffix = 'suffix${randomSequence}';
+    _suffix = 'suffix$randomSequence';
   }
 
   /// Removes the suffixes from the element and its child nodes
@@ -179,7 +181,7 @@ class _TagSanitizer {
       String leftSide = <String>[tagName, attributes]
           .where((String item) => item.length > 0)
           .join();
-      return '<${leftSide}>';
+      return '<$leftSide>';
     });
 
     ret = ret.replaceAllMapped(new RegExp(r'</(\w+)>'), (Match matches) {
@@ -187,7 +189,7 @@ class _TagSanitizer {
       if (_reservedTags.contains(tagName)) {
         tagName = _suffix + '-' + tagName;
       }
-      return '</${tagName}>';
+      return '</$tagName>';
     });
 
     return ret;

@@ -8,7 +8,7 @@ void main() {
   // Triggers an event and passes some data to the listener
   find('#anchor2')
     ..on('click', (Event event, String data) {
-      print('Anchor 2: ${data}');
+      print('Anchor 2: $data');
       return false;
     })
     ..trigger('click', data: 'Hello there!');

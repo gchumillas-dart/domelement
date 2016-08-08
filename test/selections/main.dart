@@ -4,7 +4,7 @@ void main() {
   // finds a single element and changes some CSS attributes
   DomElement p1 = find('#p1');
   if (p1 == null) {
-    throw 'Item not found';
+    throw new Exception('Item not found');
   }
   p1
     ..css['color'] = '#333'
@@ -22,7 +22,7 @@ void main() {
   // finds a single element inside another element
   DomElement span1 = p1.find('#span1');
   if (span1 == null) {
-    throw 'Item not found';
+    throw new Exception('Item not found');
   }
   span1.css['color'] = 'red';
 

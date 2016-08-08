@@ -64,8 +64,8 @@ void main() {
     ..add((DomElement target) {
       for (int i = 0; i < 3; i++) {
         target.addElement($('<item />')
-          ..attr['title'] = 'Title ${i}'
-          ..text = 'Text ${i}');
+          ..attr['title'] = 'Title $i'
+          ..text = 'Text $i');
       }
     });
   print(root);
