@@ -8,6 +8,10 @@ import 'dart:math';
 
 import 'package:domelement/src/core.dart';
 
+import 'exception/document_error.dart';
+
+export 'exception/document_error.dart';
+
 part 'dom_element.dart';
 
 /// Use this function to create instances from different sources.

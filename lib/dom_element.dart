@@ -42,7 +42,8 @@ class DomElement extends Object
     DocumentFragment fragment = document.createDocumentFragment();
     fragment.appendHtml(html, treeSanitizer: new NullTreeSanitizer());
     if (fragment.children.length != 1) {
-      throw new ArgumentError('Invalid HTML');
+      throw new DocumentError('Invalid HTML');
+      //throw new ArgumentError('Invalid HTML');
     }
 
     _nativeElement =
