@@ -7,10 +7,10 @@ void main() {
   // created element
   $('<table />')
     ..add((DomElement table) {
-      List<Map<String, String>> items = [
-        {'firstName': 'John', 'lastName': 'Smith'},
-        {'firstName': 'Antonio', 'lastName': 'López'},
-        {'firstName': 'Eva', 'lastName': 'Garrido'}
+      List<Map<String, String>> items = <Map<String, String>>[
+        <String, String>{'firstName': 'John', 'lastName': 'Smith'},
+        <String, String>{'firstName': 'Antonio', 'lastName': 'López'},
+        <String, String>{'firstName': 'Eva', 'lastName': 'Garrido'}
       ];
       table
         ..addElement($('<thead />')

@@ -35,13 +35,13 @@ abstract class EventCapable {
 
   EventListener _createEventListener(String type, Function handler) {
     return (Event event) {
-      List<dynamic> params1 = [
+      List<dynamic> params1 = <dynamic>[
         event,
         event is CustomEvent ? event.detail : null
       ];
 
       // parameters
-      List<dynamic> params2 = [];
+      List<dynamic> params2 = <dynamic>[];
       ClosureMirror mirror = reflect(handler);
       List<ParameterMirror> handlerParams = mirror.function.parameters;
       int numParams = handlerParams.length;

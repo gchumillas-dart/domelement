@@ -30,8 +30,9 @@ class DomElement extends Object
         new RegExp(r'<(\w+)([^>]*)/>', multiLine: true), (Match matches) {
       String tagName = matches[1];
       String attributes = matches[2].replaceAll(new RegExp(r'\s+$'), '');
-      String leftSide =
-          [tagName, attributes].where((String item) => item.length > 0).join();
+      String leftSide = <String>[tagName, attributes]
+          .where((String item) => item.length > 0)
+          .join();
       return '<${leftSide}></${tagName}>';
     });
 
@@ -134,7 +135,13 @@ class DomElement extends Object
 ///     element = sanitizer.removeSuffixFromElementTree(element);
 ///
 class _TagSanitizer {
-  static List<String> _reservedTags = ['td', 'tr', 'tbody', 'thead', 'tfooter'];
+  static List<String> _reservedTags = <String>[
+    'td',
+    'tr',
+    'tbody',
+    'thead',
+    'tfooter'
+  ];
   String _suffix;
 
   _TagSanitizer() {
@@ -169,8 +176,9 @@ class _TagSanitizer {
           ? _suffix + '-' + matches[1]
           : matches[1];
       String attributes = matches[2].replaceAll(new RegExp(r'\s+$'), '');
-      String leftSide =
-          [tagName, attributes].where((String item) => item.length > 0).join();
+      String leftSide = <String>[tagName, attributes]
+          .where((String item) => item.length > 0)
+          .join();
       return '<${leftSide}>';
     });
 

@@ -2,38 +2,39 @@ part of domelement.src;
 
 abstract class SizeCapable {
   /// Gets border height.
-  num get borderHeight =>
-      _getSumPropertyValues(['border-top-width', 'border-bottom-width']);
+  num get borderHeight => _getSumPropertyValues(
+      <String>['border-top-width', 'border-bottom-width']);
 
   /// Gets border width.
-  num get borderWidth =>
-      _getSumPropertyValues(['border-left-width', 'border-right-width']);
+  num get borderWidth => _getSumPropertyValues(
+      <String>['border-left-width', 'border-right-width']);
 
   /// Gets or Sets height.
-  num get height => _getSumPropertyValues(['height']);
+  num get height => _getSumPropertyValues(<String>['height']);
   void set height(num value) {
     nativeElement.style.height = '${value}px';
   }
 
   /// Gets margin height.
   num get marginHeight =>
-      _getSumPropertyValues(['margin-top', 'margin-bottom']);
+      _getSumPropertyValues(<String>['margin-top', 'margin-bottom']);
 
   /// Gets margin width.
-  num get marginWidth => _getSumPropertyValues(['margin-left', 'margin-right']);
+  num get marginWidth =>
+      _getSumPropertyValues(<String>['margin-left', 'margin-right']);
 
   Element get nativeElement;
 
   /// Gets padding height.
   num get paddingHeight =>
-      _getSumPropertyValues(['padding-top', 'padding-bottom']);
+      _getSumPropertyValues(<String>['padding-top', 'padding-bottom']);
 
   /// Gets padding width.
   num get paddingWidth =>
-      _getSumPropertyValues(['padding-left', 'padding-right']);
+      _getSumPropertyValues(<String>['padding-left', 'padding-right']);
 
   /// Gets or sets height.
-  num get width => _getSumPropertyValues(['width']);
+  num get width => _getSumPropertyValues(<String>['width']);
   void set width(num value) {
     nativeElement.style.width = '${value}px';
   }
