@@ -27,7 +27,8 @@ class DomElement extends Object
   DomElement.fromString(String html) {
     // removes the self-closing tags
     html = html.replaceAllMapped(
-        new RegExp(r'<(\w+)([^>]*)/>', multiLine: true), (Match matches) {
+        new RegExp(r'<([a-z0-9\-\.]+)([^>]*)/>',
+            multiLine: true, caseSensitive: false), (Match matches) {
       String tagName = matches[1];
       String attributes = matches[2].replaceAll(new RegExp(r'\s+$'), '');
       String leftSide = <String>[tagName, attributes]
