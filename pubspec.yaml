@@ -1,5 +1,5 @@
 name: 'domelement'
-version: 0.2.0
+version: 0.2.1
 description: A client-side library to traverse and manipulate DOM documents.
 author: Gonzalo Chumillas <gchumillas@email.com>
 homepage: https://github.com/soloproyectos-dart/domelement
