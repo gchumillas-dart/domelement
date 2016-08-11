@@ -11,7 +11,19 @@ abstract class ContentCapable {
   Element get nativeElement;
 
   /// Gets or sets inner text contents.
-  String get text => nativeElement.text;
+  String get text {
+    String ret = nativeElement.text;
+
+    // gets CDATA contents
+    if (ret?.isEmpty == true && html?.isNotEmpty == true) {
+      ret = html.replaceAllMapped(new RegExp(r'^\<!--\[CDATA\[(.*)\]\]-->$'),
+          (Match matches) {
+        return matches[1];
+      });
+    }
+
+    return ret;
+  }
 
   set text(String value) {
     nativeElement.text = value;
