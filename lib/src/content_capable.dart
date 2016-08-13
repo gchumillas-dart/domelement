@@ -15,11 +15,14 @@ abstract class ContentCapable {
     String ret = nativeElement.text;
 
     // gets CDATA contents
-    if (ret?.isEmpty == true && html?.isNotEmpty == true) {
-      ret = html.replaceAllMapped(new RegExp(r'^\<!--\[CDATA\[(.*)\]\]-->$'),
-          (Match matches) {
-        return matches[1];
-      });
+    String html = nativeElement.innerHtml;
+    if (ret?.isEmpty == true &&
+        html?.isNotEmpty == true &&
+        html.startsWith('<!--[CDATA[') &&
+        html.endsWith(']]-->')) {
+      ret = html
+          .replaceAll(new RegExp(r'^\<!--\[CDATA\['), '')
+          .replaceAll(new RegExp(r'\]\]-->$'), '');
     }
 
     return ret;
