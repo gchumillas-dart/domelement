@@ -1,6 +1,7 @@
 part of domelement.src;
 
 // TODO: implement one() method
+// TODO: remove mirrors
 abstract class EventCapable {
   Element get nativeElement;
 
