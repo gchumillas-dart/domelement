@@ -18,10 +18,10 @@ void main() {
   print('Hidden text: ' + pre.data['hidden-text']);
 
   // see 'event' examples
-  find('#button1').on('click', () {
-    // removes all attributes except 'data' and 'style'
-    pre.attr..remove('contenteditable')..remove('spellcheck');
-  });
-  find('#button2').on('click', () => pre.css.clear());
-  find('#button3').on('click', () => pre.data.clear());
+  find('#button1')
+      .nativeElement
+      .onClick
+      .listen((_) => pre.attr..remove('contenteditable')..remove('spellcheck'));
+  find('#button2').nativeElement.onClick.listen((_) => pre.css.clear());
+  find('#button3').nativeElement.onClick.listen((_) => pre.data.clear());
 }

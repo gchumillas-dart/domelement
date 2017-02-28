@@ -14,7 +14,7 @@ void updateControlPanel() {
 }
 
 void main() {
-  find('#control-panel').on('submit', () {
+  find('#control-panel').nativeElement.onSubmit.listen((_) {
     try {
       find('#div1')
         ..width = int.parse(find('#width').value)
@@ -22,8 +22,6 @@ void main() {
     } catch (exception) {
       print(exception);
     }
-
-    return false;
   });
 
   updateControlPanel();

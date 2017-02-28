@@ -1,12 +1,7 @@
 part of domelement;
 
 class DomElement extends Object
-    with
-        AttributeCapable,
-        ClassCapable,
-        ContentCapable,
-        EventCapable,
-        SizeCapable {
+    with AttributeCapable, ClassCapable, ContentCapable, SizeCapable {
   Element _nativeElement;
 
   /// Creates an instance from a tag name.
