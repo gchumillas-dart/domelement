@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:domelement/core.dart';
 
 void updateControlPanel() {
@@ -14,7 +16,7 @@ void updateControlPanel() {
 }
 
 void main() {
-  find('#control-panel').nativeElement.onSubmit.listen((_) {
+  find('#control-panel').nativeElement.onSubmit.listen((Event event) {
     try {
       find('#div1')
         ..width = int.parse(find('#width').value)
@@ -22,6 +24,8 @@ void main() {
     } catch (exception) {
       print(exception);
     }
+
+    event.preventDefault();
   });
 
   updateControlPanel();
