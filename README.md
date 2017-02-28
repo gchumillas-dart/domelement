@@ -101,26 +101,6 @@ print(root);
 
 The `$('<a />')` expression is equivalent to `new DomElement.fromString('<a />')`. And `$(document.documentElement)` is equivalent to `new DomElement.fromElement(document.documentElement)`.
 
-## Responding to events
-
-Use `on()`, `off()` and `trigger()` to operate events:
-
-```dart
-// prints an alert when clicking #anchor1
-find('#anchor1').on('click', () => print('Click!'));
-
-// dispatches an event and passes some extra info
-find('#anchor2')
-  ..on('click', (event, data) {
-    print('Data: ${data}');
-    // by returning 'false' stops the event from bubbling up
-    // the event chain and prevents the default action
-    // in similar way as jQuery does
-    return false;
-  })
-  ..trigger('click', data: 'Hello there!');
-```
-
 ## Limitations
 
 As I mentioned previously this library does not pretend to replace the official Dart's library. It can't cover all cases, even though it covers the most common cases.
